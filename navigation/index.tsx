@@ -3,6 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+ import { StyleSheet, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
@@ -14,10 +15,19 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import Home from '../screens/Home';
+import Nutrition from '../screens/Nutrition';
+import HomeIcon from '../shared/svgs/HomeIcon';
+import NutritionIcon from '../shared/svgs/NutritionIcon';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import Shopping from '../screens/Shopping';
+import ShoppingIcon from '../shared/svgs/ShoppingIcon';
+import Recipes from '../screens/Recipes';
+import RecipesIcon from '../shared/svgs/RecipesIcon';
+import AccountIcon from '../shared/svgs/AccountIcon';
+import Account from '../screens/Account';
+import ActiveIndicator from './active-indicator/ActiveIndicator';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -25,6 +35,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
+      <ActiveIndicator></ActiveIndicator>
     </NavigationContainer>
   );
 }
@@ -58,50 +69,95 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+        tabBarStyle:{
+          flex: 1,
+          justifyContent: 'space-evenly',
+          paddingTop: 20,
+          flexDirection: 'row',
+          position: 'absolute',
+          backgroundColor: 'white',
+          width: '100%',
+          bottom: 0,
+          height: 90,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: -5,
+          },
+          shadowOpacity: 0.35,
+          shadowRadius: 15
+        },
+    }}
+      >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+        name="Shopping"
+        component={Shopping}
+        options={()=>({
+          tabBarLabel: '',
+          headerShown: false,
+          tabBarIcon: ({color}) => <ShoppingIcon color={color} />
         })}
+        />
+        <BottomTab.Screen 
+        name="Recipes"
+        component={Recipes}
+        options={()=>({
+          tabBarLabel: '',
+          headerShown: false,
+          tabBarIcon: ({color}) => <RecipesIcon color={color} />
+        })}
+        />
+      <BottomTab.Screen
+        name="Home"
+        component={Home}
+        options={() => ({
+          tabBarLabel: '',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <View style={styles.home}>
+            <HomeIcon  color={color} />
+          </View>
+        })}
+
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+        name="Nutrition"
+        component={Nutrition}
+        options={()=>({
+          tabBarLabel: '',
+          title: 'Nutrition',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <NutritionIcon color={color} />,
+        })}
+      />
+      <BottomTab.Screen 
+        name="Account"
+        component={Account}
+        options={()=>({
+          tabBarLabel: '',
+          title: 'Account',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <AccountIcon color={color} />,
+        })}
       />
     </BottomTab.Navigator>
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+
+const styles = StyleSheet.create({
+  home: {
+    padding: 20,
+    borderRadius: 50,
+    backgroundColor: 'white',
+    top: -15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.30,
+    shadowRadius: 10,
+  },
+});

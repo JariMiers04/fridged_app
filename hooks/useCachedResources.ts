@@ -1,4 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
+import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
@@ -14,9 +15,11 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          ...FontAwesome.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
-        });
+          Cunia: require("../assets/fonts/cunia.ttf"),
+          PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
+          PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
+          PoppinsSemiBold: require("../assets/fonts/Poppins-SemiBold.ttf")
+        })
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);
