@@ -27,7 +27,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
           Home: {
             screens: {
-              Home: 'Home',
+              Home: '',
             }
           },
           Nutrition: {

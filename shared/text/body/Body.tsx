@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         fontFamily: "PoppinsRegular",
         fontSize: 12,
         color: "#14080E",
-        textAlign: 'left'
+        textAlign: 'left',
+        marginBottom: 2
     }
   });

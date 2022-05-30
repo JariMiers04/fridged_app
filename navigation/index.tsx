@@ -11,7 +11,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
-import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -28,6 +27,7 @@ import RecipesIcon from '../shared/svgs/RecipesIcon';
 import AccountIcon from '../shared/svgs/AccountIcon';
 import Account from '../screens/Account';
 import ActiveIndicator from './active-indicator/ActiveIndicator';
+import Title from '../shared/text/title/Title';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -114,10 +114,14 @@ function BottomTabNavigator() {
         component={Home}
         options={() => ({
           tabBarLabel: '',
-          headerShown: false,
           tabBarIcon: ({ color }) => <View style={styles.home}>
             <HomeIcon  color={color} />
-          </View>
+          </View>,
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            left: -110
+          },
+          title: <Title headerStyle>fridged</Title>,
         })}
 
       />

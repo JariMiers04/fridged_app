@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import React from 'react';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
