@@ -3,7 +3,7 @@ import Svg, { Defs, Path, SvgProps } from 'react-native-svg';
 
 export default function SvgComponent(props: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<React.Component<SvgProps, any, any>> & Readonly<SvgProps> & Readonly<{ children?: React.ReactNode; }>){
     return(
-        <Svg width='33' height='33' viewBox="0 0 24 24" {...props}>
+        <Svg width='24' height='24' viewBox="0 0 50 50" {...props}>
     <Defs>
     </Defs>
     <Path id="Icon_awesome-exclamation-circle" data-name="Icon awesome-exclamation-circle" fill="#fc704d"
