@@ -30,7 +30,6 @@ export default function Home() {
     .catch((error)=>console.error(error))
     .finally(()=>setLoading(false));
   };
-
   const sortData = () => {
     data.sort((a, b)=> {
       return new Date(a.expiration_date).valueOf() - new Date(b.expiration_date).valueOf();
