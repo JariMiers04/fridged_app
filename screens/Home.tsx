@@ -49,9 +49,9 @@ export default function Home() {
       </View>
       {loading ? <ActivityIndicator /> : null}
       <RefreshControl refreshing={loading} onRefresh={getFoodData} />
-      <View style={styles.foodWrapper}>
+      <View style={styles.foodWrapper} >
         {sortData()}
-      {data.map(element => <FoodCard image={element.image} title={element.short_name} date={element.expiration_date} weight={element.weight}></FoodCard> )}
+      {data.map(element => <FoodCard image={element.image} title={element.short_name} date={element.expiration_date} weight={element.weight} key={element.id}></FoodCard> )}
       {data.length < 1 ? null : null}
       </View>
   </View>
