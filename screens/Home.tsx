@@ -16,6 +16,7 @@ interface Food {
   short_name: string,
   image: string,
   expiration_date: Date,
+  nutriscore_label: string,
   weight: number,
 }
 
