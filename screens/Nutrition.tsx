@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 import Title from '../shared/text/title/Title';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import React from 'react';
+import Body from '../shared/text/body/Body';
 
 export default function Nutrition() {
   return (
@@ -9,6 +11,9 @@ export default function Nutrition() {
         <View style={styles.title}>
           <Title>Nutrition</Title>
         </View>
+        <View style={{alignItems: 'center', flex: 1, width: '100%', top: '35%', left: -20}}>
+        <Body alignCenter background>Coming Soon...</Body>
+      </View>
     </View>
       </>
     );
