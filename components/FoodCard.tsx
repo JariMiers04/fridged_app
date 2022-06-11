@@ -55,7 +55,7 @@ useEffect(()=>{
 },[])
     return(
         <View style={styles.container}>
-                {props.image.length > 0 ? <Image source={{uri: props.image }} style={{width: 110, height: 110, alignContent: 'center', marginBottom: 15, marginTop: 15}} />: <Image source={require('../assets/imageNotFound.png')} style={{width: 110, height:110, alignContent: 'center', marginBottom: 15, marginTop: 15}}/>}
+                {props.image.length > 0 ? <Image source={{uri: props.image }} style={{width: 'auto', height: 110, alignContent: 'center', marginBottom: 15, marginTop: 15}} />: <Image source={require('../assets/imageNotFound.png')} style={{width: 110, height:110, alignContent: 'center', marginBottom: 15, marginTop: 15}}/>}
                 <View style={styles.wrapper}>
                   <View style={styles.content}>
                     <SubTitle upperCase>{props.title}</SubTitle>
