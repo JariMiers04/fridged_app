@@ -35,7 +35,6 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
-      <ActiveIndicator></ActiveIndicator>
     </NavigationContainer>
   );
 }
@@ -97,7 +96,11 @@ function BottomTabNavigator() {
         options={()=>({
           tabBarLabel: '',
           headerShown: false,
-          tabBarIcon: ({color}) => <ShoppingIcon color={color} />
+          tabBarIcon: ({color, focused}) => {return focused ? (
+          <><ShoppingIcon color={color} /><ActiveIndicator></ActiveIndicator></>)
+          :
+          (<ShoppingIcon color={color}/>)
+        } 
         })}
         />
         <BottomTab.Screen 
@@ -106,24 +109,35 @@ function BottomTabNavigator() {
         options={()=>({
           tabBarLabel: '',
           headerShown: false,
-          tabBarIcon: ({color}) => <RecipesIcon color={color} />
-        })}
+          tabBarIcon: ({color, focused}) => { return focused ? (
+              <><RecipesIcon color={color}></RecipesIcon><ActiveIndicator></ActiveIndicator></>
+          ) : (
+            <RecipesIcon color={color}></RecipesIcon>
+          );
+        },
+      })}
         />
       <BottomTab.Screen
         name="Home"
         component={Home}
         options={() => ({
           tabBarLabel: '',
-          tabBarIcon: ({ color }) => <View style={styles.home}>
+          tabBarIcon: ({ color, focused }) => { return focused ? (
+            <><View style={styles.home}>
             <HomeIcon  color={color} />
-          </View>,
+          </View><ActiveIndicator></ActiveIndicator></>
+        ) : (
+          <View style={styles.home}>
+          <HomeIcon  color={color} />
+        </View>
+        );
+      },
           headerShadowVisible: false,
           headerTitleStyle: {
             left: -110
           },
           title: <Title headerStyle>fridged</Title>,
         })}
-
       />
       <BottomTab.Screen
         name="Nutrition"
@@ -132,7 +146,9 @@ function BottomTabNavigator() {
           tabBarLabel: '',
           title: 'Nutrition',
           headerShown: false,
-          tabBarIcon: ({ color }) => <NutritionIcon color={color} />,
+          tabBarIcon: ({ color, focused }) => {return focused ? (<><NutritionIcon color={color} /><ActiveIndicator></ActiveIndicator></>)
+          :
+          (<NutritionIcon color={color} />)} ,
         })}
       />
       <BottomTab.Screen 
@@ -142,7 +158,9 @@ function BottomTabNavigator() {
           tabBarLabel: '',
           title: 'Account',
           headerShown: false,
-          tabBarIcon: ({ color }) => <AccountIcon color={color} />,
+          tabBarIcon: ({ color, focused }) => {return focused ? (<><AccountIcon color={color} /><ActiveIndicator></ActiveIndicator></>)
+          :
+          (<AccountIcon color={color} />)},
         })}
       />
     </BottomTab.Navigator>
