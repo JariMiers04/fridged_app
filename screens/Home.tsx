@@ -6,6 +6,7 @@ import FoodCard from '../components/FoodCard';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { URL } from "@env";
 
 // https://blog.openreplay.com/how-to-use-props-to-pass-data-to-child-components-in-react-js
 
@@ -20,13 +21,14 @@ interface Food {
   weight: number,
 }
 
+
 export default function Home() {
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Food[]>([]);
 
   const getFoodData = () =>{
-    fetch('http://localhost:80').then((response)=>response.json())
+    fetch(`${URL}`).then((response)=>response.json())
     .then((json)=> setData(json))
     .catch((error)=>console.error(error))
     .finally(()=>setLoading(false));
