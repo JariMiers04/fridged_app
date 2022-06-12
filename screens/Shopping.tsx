@@ -9,7 +9,7 @@ export default function Shopping() {
   return (
   <><View style={styles.container}>
       <View style={styles.title}>
-        <Title>Shopping page</Title>
+        <Title>Shopping</Title>
       </View>
       <View style={{alignItems: 'center', flex: 1, width: '100%', top: '35%', left: -20}}>
         <Body alignCenter background>Coming Soon...</Body>
